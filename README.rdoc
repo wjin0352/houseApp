@@ -1,3 +1,0 @@
-CREATE TABLE thermometers ( name varchar(80), email VARCHAR(320),
-location varchar(80), temperature INTEGER, primary_key INTEGER NOT NULL PRIMARY KEY,
- foreign_key INTEGER NOT NULL);

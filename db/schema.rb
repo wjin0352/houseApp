@@ -11,17 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150103205747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "thermometer", primary_key: "primary_key", force: true do |t|
+  create_table "thermometers", primary_key: "therm_pk", force: true do |t|
     t.string  "name",        limit: 80
     t.string  "email",       limit: 320
     t.string  "location",    limit: 80
     t.integer "temperature"
-    t.integer "foreign_key",             null: false
+  end
+
+  create_table "users", primary_key: "users_id", force: true do |t|
+    t.string "name",  limit: 80
+    t.string "email"
   end
 
 end
