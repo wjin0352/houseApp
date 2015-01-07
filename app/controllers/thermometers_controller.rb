@@ -1,6 +1,11 @@
 class ThermometersController < ApplicationController
   before_action  :require_user, except: [:show, :index]
 
+  # ***
+  # CREATE SEQUENCE user_id_seq;
+  # ALTER TABLE user ALTER user_id SET DEFAULT NEXTVAL('user_id_seq');
+  # ***
+
   def index
     # 1st you retrieve the user thanks to params[:user_id]
     user = User.find(params[:user_id])

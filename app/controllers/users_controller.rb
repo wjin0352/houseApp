@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy ]
 
+  # ***
+  # CREATE SEQUENCE user_id_seq;
+  # ALTER TABLE user ALTER user_id SET DEFAULT NEXTVAL('user_id_seq');
+  # ***
+
   def index
     @users = User.all
   end
@@ -54,9 +59,9 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
   end
-
+  # strong parameters rails convention for this
   def user_params
     params.require(:user).permit(:name, :email)
   end
@@ -65,3 +70,4 @@ class UsersController < ApplicationController
 
 
 end
+

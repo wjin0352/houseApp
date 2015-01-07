@@ -14,8 +14,11 @@ Rails.application.routes.draw do
 
 
   resources :users do
-    resources :thermometers
+    resources :thermometers do
+     resources :readings, only: [:index]
+    end
   end
+
 
 
 
