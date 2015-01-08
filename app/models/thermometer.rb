@@ -4,8 +4,7 @@ class Thermometer < ActiveRecord::Base
   # If the association name is wrongly pluralized, then the inferred class will be wrongly
   # pluralized too.
   belongs_to :user
-  has_many :readings
-
+  has_many :readings, dependent: :destroy
 
 end
 

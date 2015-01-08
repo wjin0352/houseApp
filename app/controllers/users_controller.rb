@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy ]
 
-  # ***
+  # *** TO ADD AUTOINCREMENTING PRIMARY KEYS IN POSTGRESQL if you already made tables,
   # CREATE SEQUENCE user_id_seq;
   # ALTER TABLE user ALTER user_id SET DEFAULT NEXTVAL('user_id_seq');
   # ***

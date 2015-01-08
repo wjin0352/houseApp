@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root to: 'users#index'
 
   # its not a resource or route for a particular resource or model, instead we wanna build our own routes
@@ -14,11 +15,10 @@ Rails.application.routes.draw do
 
 
   resources :users do
-    resources :thermometers do
-     resources :readings, only: [:index]
-    end
+    resources :thermometers
   end
 
+  resources :readings, only: [:index]
 
 
 

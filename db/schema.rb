@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107172524) do
+ActiveRecord::Schema.define(version: 20150108211153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,23 @@ ActiveRecord::Schema.define(version: 20150107172524) do
   end
 
   create_table "users", primary_key: "user_id", force: true do |t|
-    t.string  "name",           limit: 80
-    t.string  "email"
-    t.integer "thermometer_id"
-    t.integer "reading_id"
+    t.string   "name",                   limit: 80
+    t.integer  "thermometer_id"
+    t.integer  "reading_id"
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                     default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "readings", "thermometers", primary_key: "thermometer_id", name: "readings_thermometer_id_fkey"
   add_foreign_key "readings", "users", primary_key: "user_id", name: "readings_user_id_fkey"
