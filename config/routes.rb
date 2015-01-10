@@ -1,26 +1,20 @@
 Rails.application.routes.draw do
 
-  root to: 'users#index'
+  devise_for :users
 
-  # its not a resource or route for a particular resource or model, instead we wanna build our own routes
-  get '/login', to: "sessions#new"  # get /login to be mapped to this thing called sessions,  sessions#new ,
-  # 'new' makes sense since we wanna be restful
+  resources :home
+  resources :userview
 
-  #hand the form submission of that login form aka our 'create session'...always think restful
-  post '/login', to: "sessions#create"
 
-  #
-  get '/logout', to: "sessions#destroy"
+  root to: 'home#index'
 
 
   resources :users do
-    resources :thermometers do
-     resources :readings, only: [:index]
-    end
+    resources :thermometers
   end
 
 
-
+  resources :readings, only: [:index]
 
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110212115) do
+ActiveRecord::Schema.define(version: 20150110222210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,23 +26,31 @@ ActiveRecord::Schema.define(version: 20150110212115) do
 
   create_table "thermometers", primary_key: "thermometer_id", force: true do |t|
     t.string  "name",        limit: 80
-    t.string  "email",       limit: 320
     t.string  "location",    limit: 80
     t.integer "temperature"
     t.integer "user_id"
     t.integer "reading_id"
   end
 
-  create_table "users", primary_key: "user_id", force: true do |t|
-    t.string  "name",           limit: 80
-    t.integer "thermometer_id"
-    t.integer "reading_id"
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
   add_foreign_key "readings", "thermometers", primary_key: "thermometer_id", name: "readings_thermometer_id_fkey"
-  add_foreign_key "readings", "users", primary_key: "user_id", name: "readings_user_id_fkey"
   add_foreign_key "thermometers", "readings", primary_key: "reading_id", name: "thermometers_reading_id_fkey"
-  add_foreign_key "thermometers", "users", primary_key: "user_id", name: "thermometers_user_id_fkey"
-  add_foreign_key "users", "readings", primary_key: "reading_id", name: "users_reading_id_fkey"
-  add_foreign_key "users", "thermometers", primary_key: "thermometer_id", name: "users_thermometer_id_fkey"
 end

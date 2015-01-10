@@ -8,6 +8,21 @@
 </head>
 <body>
 
+<div id="user_nav">
+  <% if user_signed_in? %>
+    <p align="right">Signed in as <%= current_user.email %>.  Not you?
+    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></p>
+  <% else %>
+    <%= link_to 'Sign Up', new_user_registration_path %> Or <%= link_to 'Sign in', new_user_session_path %>
+  <%end%>
+  <hr>
+</div>
+
+<!-- flash message area for devise gem -->
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+
 <%= yield %>
 
 </body>
