@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :home
   resources :userview
 
-
   root to: 'home#index'
 
 
