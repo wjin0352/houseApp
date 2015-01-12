@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   # before_action :set_user, only: [:show, :index, :edit, :create, :update, :destroy ]
+    before_action :set_user, only: [:show, :edit, :create, :update, :destroy ]
 
   # ***
   # CREATE SEQUENCE user_id_seq;
