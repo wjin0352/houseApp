@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :index, :edit, :update, :destroy ]
+   # before_action :set_user, only: [:show, :index, :edit, :create, :update, :destroy ]
 
   # ***
   # CREATE SEQUENCE user_id_seq;
@@ -7,11 +7,14 @@ class UsersController < ApplicationController
   # ***
 
   def index
+    # binding.pry
+
     @users = User.all
   end
 
   def show
-    # @user = User.find(params[:id])
+    # binding.pry
+    @user = User.find(params[:id])
   end
 
   def new
