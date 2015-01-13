@@ -7,13 +7,13 @@ class UsersController < ApplicationController
   # ***
 
   def index
-    # binding.pry
+     # binding.pry
 
     @users = User.all
   end
 
   def show
-    # binding.pry
+     # binding.pry
     @user = User.find(params[:id])
   end
 
@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # binding.pry
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -60,7 +61,8 @@ class UsersController < ApplicationController
 
 
   private
-
+  # watch how you use set_user if the :id isn't required, you will run into issues.  Make sure the url
+  # references :id if you want to use set_user
   def set_user
     @user = User.find(params[:user_id])
   end

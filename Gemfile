@@ -30,6 +30,9 @@ gem 'mail'
 gem 'devise'
 gem 'responders'
 gem 'pry'
+
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -50,3 +53,8 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development, :test do
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+  gem 'capybara'
+end
