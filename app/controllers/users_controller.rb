@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :create, :update, :destroy ]
-
+    before_filter :authenticate_user!
   # ***
   # CREATE SEQUENCE user_id_seq;
   # ALTER TABLE user ALTER user_id SET DEFAULT NEXTVAL('user_id_seq');
@@ -8,8 +8,9 @@ class UsersController < ApplicationController
 
   def index
      # binding.pry
-
+     # coming from home#index
     @users = User.all
+     # rails will render views/users/index by default
   end
 
   def show

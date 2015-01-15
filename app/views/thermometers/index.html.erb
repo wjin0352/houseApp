@@ -1,0 +1,22 @@
+<h2>Thermometers index view</h2>
+
+<container>
+  <table class="table table-hover">
+    <% @users.each do |a| %>
+        <tr>
+          <td><%= a.name %></td>
+          <td><%= a.email %></td><br>
+        </tr>
+    <% end %>
+  </table>
+</container>
+
+<container>
+  <table class="table table-hover">
+    <%= @thermometers.each do |t| %>
+        <%= t.id %>
+        <%= t.location %>
+        <%= t.reading %>
+    <% end %>
+  </table>
+</container>

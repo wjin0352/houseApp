@@ -8,7 +8,9 @@
 </head>
 <body>
 
-<div id="user_nav">
+<nav class="navbar navbar-default">
+
+<div class="container" id="user_nav">
   <% if user_signed_in? %>
     <p align="right">Signed in as <%= current_user.email %>.  Not you?
     <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></p>
@@ -17,7 +19,7 @@
   <%end%>
   <hr>
 </div>
-
+</nav>
 <!-- flash message area for devise gem -->
 <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>

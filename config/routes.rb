@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :home
   resources :userview
+
+  resources :home
 
   root to: 'home#index'
 
@@ -13,9 +14,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :readings, only: [:index]
-
-
+  resources :readings, only: [:index, :new, :create, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
+  # start here by registration
   def index
     if user_signed_in?
-      redirect_to :controller =>'users', :action => 'index'
+      # after registered check redirected to users#index
+      # redirect_to :controller =>'users', :action => 'index'
+      # instead send to thermometer#index and show the thermometers for the user, no need to show users index
+      redirect_to :controller => 'thermometers', :action => 'index'
     end
   end
 
