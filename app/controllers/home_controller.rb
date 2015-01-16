@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       # after registered check redirected to users#index
       # redirect_to :controller =>'users', :action => 'index'
       # instead send to thermometer#index and show the thermometers for the user, no need to show users index
-      redirect_to :controller => 'thermometers', :action => 'index'
+      redirect_to user_thermometers_path(current_user)
     end
   end
 

@@ -8,24 +8,27 @@ class ThermometersController < ApplicationController
 
   def index
     # 1st you retrieve the user thanks to params[:user_id]
-    user = User.find(params[:user_id])
+    # user = User.find(params[:user_id])
     # 2nd you get all the thermometers of this user
-    @thermometers = user.thermometers
-
+    # @thermometers = user.thermometers
+    # instead of the above you should use devise's methods like current_user
+    @thermometers = current_user.thermometers
+    # binding.pry
     respond_to do |format|
-      format.html {  }
+      format.html { render :index }
       format.json { render :json }
     end
   end
 
   def show
     # 1st you retrieve the user thanks to params[:user_id]
-    user = User.find(params[:user_id])
+    # user = User.find(params[:user_id])
     # 2nd you retrieve the thermometer thanks to params[:id]
-    @thermometer = user.thermometers.find(params[:id])
-
+    # @thermometer = user.thermometers.find(params[:id])
+    @thermometer = current_user.thermometers.find(params[:id])
+    #binding.pry
     respond_to do |format|
-      format.html { }
+      format.html { :show }
       format.json { render :json }
     end
   end
