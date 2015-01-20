@@ -1,5 +1,5 @@
 class ThermometersController < ApplicationController
-  before_action  :require_user, except: [:show, :index]
+  before_action  :require_user, except: [:show, :index, :new, :create]
 
   # ***
   # CREATE SEQUENCE user_id_seq;
@@ -12,6 +12,7 @@ class ThermometersController < ApplicationController
     # 2nd you get all the thermometers of this user
     # @thermometers = user.thermometers
     # instead of the above you should use devise's methods like current_user
+
     @thermometers = current_user.thermometers
     # binding.pry
     respond_to do |format|
@@ -35,61 +36,70 @@ class ThermometersController < ApplicationController
 
   def new
     # 1st you retrieve the user thanks to params[:user_id]
-    user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
+    @user = current_user # devise gives us this method to use, makes it easier to reference logged in user
+    # i didn't use just current_user because i need @user instance var in the new form
     # 2nd you build a new one
-    @thermometer = user.thermometers.build
+   @thermometer = @user.thermometers.build
 
-    respond_to do |format|
-      format.html {}
-      format.json {render :json}
-    end
   end
 
-  def edit
-    # 1st you retrieve the user thanks to params[:user_id]
-    user = User.find(params[:user_id])
-    # 2nd you retrieve the thermometer thanks to params[:id]
-    @thermometer = user.thermometers.find(params[:id])
-  end
 
   def create
-    user = User.find(parmas[:user_id])
-    @thermometer = user.thermometers.create(params[:id])
-
+    # user = User.find(params[:user_id])
+    # @thermometer = user.thermometers.create(thermometer_params)
+    @thermometer = current_user.thermometers.new(thermometer_params)
     respond_to do |format|
+
       if @thermometer.save
-        format.html { redirect_to [@thermometer.user, @user], :notice => 'Comment was successfully created.'}
+        format.html { redirect_to user_thermometers_path, :notice => 'thermometer was successfully created.'}
         format.json { render :json }
       else
-        format.html { render :action => "new"}
+         flash[:notice] = @thermometer.errors.full_messages
+        format.html { redirect_to new_user_thermometer_path}
         format.json { render :json => @thermometer.errors, :status => :unprocessable_entity }
       end
     end
   end
 
+  def edit
+    # 1st you retrieve the user thanks to params[:user_id]
+     @user = User.find(params[:user_id])
+    # 2nd you retrieve the thermometer thanks to params[:id]
+     # I used @user instead of current_user because i need use of @user in the form for edit
+    @thermometer = @user.thermometers.find(params[:id])
+
+  end
+
   def update
-    user = User.find(params[:user_id])
-    @thermometer = user.thermometers.find(params[:id])
+    @user = User.find(params[:user_id])
+    # must use thermometer_params because update action is similar to create action and must use strong parameters.
+    @thermometer = @user.thermometers.find(thermometer_params)
 
     respond_to do |format|
-      if @thermometer.update_attributes(params[:comment]).permit(:comment, :body)
-        format.html {}
+      if @thermometer.update_attributes
+        format.html { redirect_to user_thermometer, notice: 'successfully updated thermometer' }
         format.json {}
       else
-        format.html {}
+        format.html { render :edit }
         format.json {}
       end
     end
   end
 
   def destroy
+    # user = User.find(params[:user_id])
+    # @thermometer = user.thermometers.find(params[:id])
+    # @thermometer.destroy
+    @thermometer.destroy
+    flash[:notice] = "#{@thermometer.name}'s #{@thermometer.location} thermometer was deleted"
 
   end
 
+  private
 
-
-
-
-
+  def thermometer_params
+    params.require(:thermometer).permit(:location, :name, :temperature)
+  end
 
 end

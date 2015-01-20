@@ -1,21 +1,27 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :create, :update, :destroy ]
+    # devise is pretty much doing all this for us, i commented out and i can still create new user in registration
+
+    before_action :set_user, only: [:show, :edit, :update, :destroy ]
+
+    # being done in applicationController so it's for all controllers
     before_filter :authenticate_user!
+
   # ***
   # CREATE SEQUENCE user_id_seq;
   # ALTER TABLE user ALTER user_id SET DEFAULT NEXTVAL('user_id_seq');
   # ***
 
   def index
-     # binding.pry
-     # coming from home#index
-    @users = User.all
-     # rails will render views/users/index by default
+  # binding.pry
+  # coming from home#index
+  # Solution to N + 1 queries problem
+    @users = User.includes(:thermometers,:readings).all
+    # rails will render views/users/v
   end
 
   def show
      # binding.pry
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def new
@@ -27,7 +33,8 @@ class UsersController < ApplicationController
 
   def create
     # binding.pry
-    @user = User.new(user_params)
+    @user = User.new(user_params) # using user_params because strong parameters
+                                  # is require by rails when creating, as security measure.
 
     respond_to do |format|
       if @user.save
@@ -42,7 +49,7 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_params) # might be an error, instead try giving params[:id]...
         format.html { redirect_to @user, notice: 'User was successfully updated!' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -64,9 +71,11 @@ class UsersController < ApplicationController
   private
   # watch how you use set_user if the :id isn't required, you will run into issues.  Make sure the url
   # references :id if you want to use set_user
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+    # set_user is unnecessary in this case just use devise current_user method to grab the user that's logged in
+  # def set_user
+  #   @user = User.find(params[:user_id])
+  # end
+
   # strong parameters rails convention for this
   def user_params
     params.require(:user).permit(:name, :email)

@@ -6,7 +6,13 @@ class Thermometer < ActiveRecord::Base
   belongs_to :user
   has_many :readings
 
+  validates_presence_of :temperature
+  validates_presence_of :location
 
+  # def initialize(location="",temperature="" )
+  #   self.location = location
+  #   self.temperature = temperature
+  # end
 end
 
 
