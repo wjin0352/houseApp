@@ -1,6 +1,12 @@
 <!--partial for /views/thermometers/index.html.erb-->
+<!--watch out for how you give the user and thermo ids to that link_to since it was from a render you must
+reference it as thermometer.user for the id as shown below-->
 <tr>
   <td><%= thermometer.thermometer_id %></td>
   <td><%= thermometer.location %></td>
   <td><%= thermometer.temperature %></td>
+  <td><%= link_to 'edit', edit_user_thermometer_path(thermometer.user, thermometer),class: "btn btn-success" %>
+      <%= link_to 'delete',  user_thermometer_path(thermometer.user, thermometer),method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+       <!--the path i used for delete, check rake routes and i used user_thermometer and specified the VERB delete-->
+  </td>
 </tr>

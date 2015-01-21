@@ -1,5 +1,4 @@
 class ThermometersController < ApplicationController
-  before_action  :require_user, except: [:show, :index, :new, :create]
 
   # ***
   # CREATE SEQUENCE user_id_seq;
@@ -29,7 +28,7 @@ class ThermometersController < ApplicationController
     @thermometer = current_user.thermometers.find(params[:id])
     #binding.pry
     respond_to do |format|
-      format.html { :show }
+      format.html { render :show }
       format.json { render :json }
     end
   end
@@ -69,16 +68,18 @@ class ThermometersController < ApplicationController
      # I used @user instead of current_user because i need use of @user in the form for edit
     @thermometer = @user.thermometers.find(params[:id])
 
+
+
   end
 
   def update
     @user = User.find(params[:user_id])
     # must use thermometer_params because update action is similar to create action and must use strong parameters.
-    @thermometer = @user.thermometers.find(thermometer_params)
+    @thermometer = @user.thermometers.find(params[:id])
 
     respond_to do |format|
-      if @thermometer.update_attributes
-        format.html { redirect_to user_thermometer, notice: 'successfully updated thermometer' }
+      if @thermometer.update_attributes(thermometer_params)
+        format.html { redirect_to user_thermometers_path, notice: 'successfully updated thermometer' }
         format.json {}
       else
         format.html { render :edit }
@@ -89,11 +90,13 @@ class ThermometersController < ApplicationController
 
   def destroy
     # user = User.find(params[:user_id])
-    # @thermometer = user.thermometers.find(params[:id])
-    # @thermometer.destroy
+    user = current_user
+    @thermometer = user.thermometers.find(params[:id])
     @thermometer.destroy
-    flash[:notice] = "#{@thermometer.name}'s #{@thermometer.location} thermometer was deleted"
-
+    respond_to do |format|
+      flash[:notice] = "#{@thermometer.name}'s #{@thermometer.location} thermometer was deleted"
+      format.html { redirect_to user_thermometers_path }
+    end
   end
 
   private

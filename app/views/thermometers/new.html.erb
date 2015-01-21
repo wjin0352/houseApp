@@ -1,13 +1,5 @@
 <!--form for new thermometer-->
 <!--@user is the main object-->
-<%= form_for [@user, @thermometer] do |t| %>
+<h3>new form for thermometer</h3>
 
-    <p><%= t.label "location " %></p>
-    <p><%= t.text_field :location %></p>
-
-    <p><%= t.label "temperature" %></p>
-    <p><%= t.text_field :temperature %></p>
-
-    <p><%= t.submit %></p>
-
-<% end %>
+<%= render 'thermometer_form' %>
