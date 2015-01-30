@@ -12,7 +12,8 @@ class ThermometersController < ApplicationController
     # @thermometers = user.thermometers
     # instead of the above you should use devise's methods like current_user
 
-    @thermometers = current_user.thermometers
+    @thermometers = current_user.thermometers.sort { |x,y| y <=>x }
+
     # binding.pry
     respond_to do |format|
       format.html { render :index }
@@ -68,8 +69,6 @@ class ThermometersController < ApplicationController
      # I used @user instead of current_user because i need use of @user in the form for edit
     @thermometer = @user.thermometers.find(params[:id])
 
-
-
   end
 
   def update
@@ -81,6 +80,7 @@ class ThermometersController < ApplicationController
       if @thermometer.update_attributes(thermometer_params)
         format.html { redirect_to user_thermometers_path, notice: 'successfully updated thermometer' }
         format.json {}
+        format.js {}
       else
         format.html { render :edit }
         format.json {}
@@ -96,6 +96,7 @@ class ThermometersController < ApplicationController
     respond_to do |format|
       flash[:notice] = "#{@thermometer.name}'s #{@thermometer.location} thermometer was deleted"
       format.html { redirect_to user_thermometers_path }
+      format.js {}
     end
   end
 
