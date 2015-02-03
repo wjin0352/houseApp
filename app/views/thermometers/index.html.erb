@@ -1,6 +1,6 @@
 <h2>Thermometers index view</h2>
 
-<%= link_to "create", new_user_thermometer_path, class: "btn btn-primary btn-lg" %>
+<%= link_to "create", new_user_thermometer_path, class: "btn btn-primary btn-lg", id: "create_thermo_button" %>
 
 <container>
   <table class="table table-hover">
@@ -11,7 +11,8 @@
         <th>Thermometer Options: </th>
     </tr>
 
-    <!--the data portion is rendered and located as a partial in /views/thermometers folder _thermometer.html.erb-->
+    <!--the data portion is rendered and located as a partial in /views/thermometers folder _thermometer.html.erb
+    also the @thermometers is plural so it will loop through each as a default -->
     <%= render @thermometers %>
   </table>
 </container>

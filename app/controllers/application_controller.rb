@@ -6,4 +6,5 @@ class ApplicationController < ActionController::Base
   # authenticate_user! as an action that has to be performed before serving any page.
   before_action :authenticate_user!
 
+
 end

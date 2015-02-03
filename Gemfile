@@ -31,6 +31,11 @@ gem 'devise'
 gem 'responders'
 gem 'pry'
 
+gem "omniauth-github"
+gem 'omniauth-gplus', '~> 2.0'
+gem "omniauth-google-oauth2"
+
+gem 'poltergeist', '~> 1.5.1'
 
 
 # Use ActiveModel has_secure_password
@@ -51,6 +56,7 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails'
   gem 'guard-rspec'
+  gem "factory_girl_rails"
 end
 
 group :test do
