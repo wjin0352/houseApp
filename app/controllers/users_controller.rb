@@ -38,6 +38,15 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        UserMailer.registration_confirmation(@user).deliver
+
+        # Tell the UserMailer to send a welcome email after save
+        # Active Job's default behavior is to execute jobs ':inline'. So, you can use
+        # deliver_later now to send emails, and when you later decide to start sending
+        # them from a background job, you'll only need to set up Active Job to use a queueing
+        # backend (Sidekiq, Resque, etc).
+
+
         format.html { redirect to @user, notice: 'User was successfully created!' }
         format.json { render :show, status: :created, location: @user}
       else

@@ -3,11 +3,17 @@
 reference it as thermometer.user for the id as shown below-->
 <tr>
 
-  <td><%= thermometer.thermometer_id %></td>
+  <!--<td><%= thermometer.thermometer_id %></td>-->
   <td><%= thermometer.location %></td>
-  <td><%= thermometer.temperature %></td>
+  <td><%= thermometer.maxTemp %></td>
+  <td><%= thermometer.minTemp %></td>
+  <td><%= thermometer.readings.last.temperature %></td>
   <td><%= link_to 'edit', edit_user_thermometer_path(thermometer.user, thermometer), class: "btn btn-success" %>
       <%= link_to 'delete',  user_thermometer_path(thermometer.user, thermometer), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
        <!--the path i used for delete, check rake routes and i used user_thermometer and specified the VERB delete-->
   </td>
+  <!--<td><%= radio_button :readingsOn, false , :checked => true , :value => false %></td>-->
+  <!--<td><%= radio_button :readingsOn, true, :value => false %></tr>-->
 </tr>
+
+

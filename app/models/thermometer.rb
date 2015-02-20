@@ -6,9 +6,17 @@ class Thermometer < ActiveRecord::Base
   belongs_to :user
   has_many :readings
 
-  validates_presence_of :temperature
+  validates_presence_of :maxTemp
+  validates_presence_of :minTemp
+  # validates_presence_of :readingsOn
   validates_presence_of :location
 
+  def evaluate
+    if self.reading > self.maxTemp || self.reading < self.minTemp
+      flash[:notice] = "temperature is out of set range."
+      #send email
+    end
+  end
   # def initialize(location="",temperature="" )
   #   self.location = location
   #   self.temperature = temperature

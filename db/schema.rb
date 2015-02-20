@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117212547) do
+ActiveRecord::Schema.define(version: 20150215001052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,13 @@ ActiveRecord::Schema.define(version: 20150117212547) do
   end
 
   create_table "thermometers", primary_key: "thermometer_id", force: true do |t|
-    t.string  "name",        limit: 80
-    t.string  "location",    limit: 80
-    t.integer "temperature"
+    t.string  "name",       limit: 80
+    t.string  "location",   limit: 80
     t.integer "user_id"
     t.integer "reading_id"
+    t.integer "maxTemp"
+    t.integer "minTemp"
+    t.boolean "readingsOn"
   end
 
   create_table "users", force: true do |t|

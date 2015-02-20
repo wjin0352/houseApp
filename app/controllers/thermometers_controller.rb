@@ -1,19 +1,7 @@
 class ThermometersController < ApplicationController
 
-  # ***
-  # CREATE SEQUENCE user_id_seq;
-  # ALTER TABLE user ALTER user_id SET DEFAULT NEXTVAL('user_id_seq');
-  # ***
-
   def index
-    # 1st you retrieve the user thanks to params[:user_id]
-    # user = User.find(params[:user_id])
-    # 2nd you get all the thermometers of this user
-    # @thermometers = user.thermometers
-    # instead of the above you should use devise's methods like current_user
-
     @thermometers = current_user.thermometers.sort { |x,y| y <=>x }
-
     # binding.pry
     respond_to do |format|
       format.html { render :index }
@@ -50,12 +38,11 @@ class ThermometersController < ApplicationController
     # @thermometer = user.thermometers.create(thermometer_params)
     @thermometer = current_user.thermometers.new(thermometer_params)
     respond_to do |format|
-
       if @thermometer.save
-        format.html { redirect_to user_thermometers_path, :notice => 'thermometer was successfully created.'}
+        format.html { redirect_to user_thermometers_path, :notice => "#{@thermometer.location} thermometer was successfully created."}
         format.json { render :json }
       else
-         flash[:notice] = @thermometer.errors.full_messages
+        flash[:notice] = @thermometer.errors.full_messages
         format.html { redirect_to new_user_thermometer_path}
         format.json { render :json => @thermometer.errors, :status => :unprocessable_entity }
       end
@@ -78,10 +65,11 @@ class ThermometersController < ApplicationController
 
     respond_to do |format|
       if @thermometer.update_attributes(thermometer_params)
-        format.html { redirect_to user_thermometers_path, notice: 'successfully updated thermometer' }
+        format.html { redirect_to user_thermometers_path, notice: "successfully updated #{@thermometer.location} thermometer" }
         format.json {}
         format.js {}
       else
+        flash[:notice] = @thermometer.errors.full_messages
         format.html { render :edit }
         format.json {}
       end
@@ -94,7 +82,7 @@ class ThermometersController < ApplicationController
     @thermometer = user.thermometers.find(params[:id])
     @thermometer.destroy
     respond_to do |format|
-      flash[:notice] = "#{@thermometer.name}'s #{@thermometer.location} thermometer was deleted"
+      flash[:notice] = "#{@thermometer.location} thermometer was destroyed"
       format.html { redirect_to user_thermometers_path }
       format.js {}
     end
@@ -102,8 +90,10 @@ class ThermometersController < ApplicationController
 
   private
 
+
+
   def thermometer_params
-    params.require(:thermometer).permit(:location, :name, :temperature)
+    params.require(:thermometer).permit(:location, :name, :temperature, :maxTemp, :minTemp, :readingsOn)
   end
 
 end
