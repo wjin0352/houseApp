@@ -17,8 +17,8 @@ class ThermometersController < ApplicationController
     @thermometer = current_user.thermometers.find(params[:id])
     #binding.pry
     respond_to do |format|
-      format.html { render :show }
-      format.json { render :json }
+
+      format.json { render json: @thermometer }
     end
   end
 
@@ -37,6 +37,7 @@ class ThermometersController < ApplicationController
     # user = User.find(params[:user_id])
     # @thermometer = user.thermometers.create(thermometer_params)
     @thermometer = current_user.thermometers.new(thermometer_params)
+    @thermometer.get_readings
     respond_to do |format|
       if @thermometer.save
         format.html { redirect_to user_thermometers_path, :notice => "#{@thermometer.location} thermometer was successfully created."}
@@ -89,8 +90,6 @@ class ThermometersController < ApplicationController
   end
 
   private
-
-
 
   def thermometer_params
     params.require(:thermometer).permit(:location, :name, :temperature, :maxTemp, :minTemp, :readingsOn)
