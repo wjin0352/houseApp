@@ -38,6 +38,7 @@ class ThermometersController < ApplicationController
     # @thermometer = user.thermometers.create(thermometer_params)
     @thermometer = current_user.thermometers.new(thermometer_params)
     @thermometer.get_readings
+    @thermometer.evaluate
     respond_to do |format|
       if @thermometer.save
         format.html { redirect_to user_thermometers_path, :notice => "#{@thermometer.location} thermometer was successfully created."}

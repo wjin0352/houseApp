@@ -12,10 +12,17 @@ class Thermometer < ActiveRecord::Base
   validates_presence_of :minTemp
   validates_presence_of :location
 
-  def evaluate
-    if self.reading > self.maxTemp || self.reading < self.minTemp
-      flash[:notice] = "temperature is out of set range."
-      #send email
+  def evaluateReading
+    if self.readings[0]['temperature'] && ( self.readings[0]['temperature'] > self.maxTemp || self.readings[0]['temperature'] < self.minTemp)
+      # flash[:notice] = "temperature is out of set range."
+      # send email
+      p self.readings[0]['temperature']
+      p self.readings
+      p self.maxTemp
+      p self.minTemp
+      p self
+      #    end
+    puts 'test'*30
     end
   end
 
@@ -24,7 +31,7 @@ class Thermometer < ActiveRecord::Base
 
     # @response = (HTTParty.get('http://secure-castle-3553.herokuapp.com/thermometers/1.json')).parsed_response
     @response = (HTTParty.get('http://secure-castle-3553.herokuapp.com/api.json')).parsed_response
-    # @response = (HTTParty.get('http://localhost:4000/thermometers/1.json')).parsed_response
+    #  @response = (HTTParty.get('http://localhost:4000/thermometers/1.json')).parsed_response
 
     puts @response
 

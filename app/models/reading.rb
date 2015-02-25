@@ -11,7 +11,7 @@ class Reading < ActiveRecord::Base
   #   @response = []
   #   # Thermometer.all.each do |thermo|
   #
-  #     @response = (HTTParty.post('http://secure-castle-3553.herokuapp.com/thermometers/1.json')).parsed_response
+  #   @response = (HTTParty.post('http://secure-castle-3553.herokuapp.com/thermometers/1.json')).parsed_response
   #   # @response = (HTTParty.post('http://localhost:4000/api')).parsed_response
   #   # @response = (HTTParty.post('http://localhost:4000/thermometers/1.json')).parsed_response
   #
