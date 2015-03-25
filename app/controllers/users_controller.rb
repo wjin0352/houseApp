@@ -81,9 +81,9 @@ class UsersController < ApplicationController
   # watch how you use set_user if the :id isn't required, you will run into issues.  Make sure the url
   # references :id if you want to use set_user
     # set_user is unnecessary in this case just use devise current_user method to grab the user that's logged in
-  # def set_user
-  #   @user = User.find(params[:user_id])
-  # end
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   # strong parameters rails convention for this
   def user_params
