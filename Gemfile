@@ -39,7 +39,7 @@ gem 'poltergeist', '~> 1.5.1'
 gem 'whenever', :require => false
 gem 'httparty'
 gem 'rails_12factor'
-
+gem 'puma'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

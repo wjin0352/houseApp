@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: houseApp_production
-  username: houseApp
+#  username: houseApp
   password: <%= ENV['HOUSEAPP_DATABASE_PASSWORD'] %>

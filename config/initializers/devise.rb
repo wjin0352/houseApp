@@ -6,6 +6,10 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # config.secret_key = 'a3e041616cffb75d836b84202f713d514d5bdd3c82da68aff0f1a5eb86c214aeac717db255d5593f82b0b382f3c5d98c8b3db8e7ca7ca5d574312ad41bac6a0a'
 
+  # added this line due to error creating production schema for production database, it said devise.secret_key not set, add to below to
+  # your devise initializer file
+  config.secret_key = 'f7fba3939b226f7e7e3087a1442097ac022d444ce2ae43d1e516b895c730e84d5780b94899d19fe663472fb073e8ee33e9d47c696a017acbf49f44a2ec74fafd'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
