@@ -38,7 +38,6 @@ gem "omniauth-google-oauth2"
 gem 'poltergeist', '~> 1.5.1'
 gem 'whenever', :require => false
 gem 'httparty'
-gem 'rails_12factor'
 gem 'puma'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -67,6 +66,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
- group :production do
-   gem 'rails_12factor'
- end
+
+gem 'rails_12factor', group: "production"
