@@ -1,0 +1,130 @@
+html {
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 #title {
+  color: rgb(242, 210, 34);
+
+}
+
+
+header {
+  height: 700px;
+  background: url(image-path('city.gif')) no-repeat center center fixed;
+  background-size: cover;
+
+}
+
+	nav {
+		float: right;
+		margin: 30px 30px 0 0;
+	}
+
+//	.logo{
+//		font-size: 50px;
+//		background: #999;
+//		float: left;
+//	}
+
+	nav a {
+		display: inline-block;
+		margin-left: 20px;
+
+		color: #AC9239;
+		font-size: 14px;
+		font-weight: 700px;
+		text-transform: uppercase;
+	}
+
+	 h1 {
+		text-align: center;
+		font-size: 73px;
+		font-weight: 700px;
+		color: white;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 20px;
+		padding-top: 100px;
+	}
+
+		span {
+			display: inline-block;
+			padding: 0.2em 0.2em;
+			border: white solid 10px;
+		}
+
+		.kicker {
+			text-align: center;
+			/*font-weight:;*/
+			color: white;
+		}
+
+		 a:hover {
+			color: black;
+		}
+
+.box-white {
+	background-color: white;
+	height: 800px;
+}
+
+	/* Contact form section */
+      #contact {
+        height: 600px;
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+
+    /* user nav-bar */
+      #user_nav {
+        padding-left: 30px;
+      }
+    /**/
+    .navbar-default{
+      position: relative;
+      float: center;
+    }
+
+.box-grey {
+	background-color:#f3f3f2;
+	height: 800px;
+}
+
+.padding-all {
+	padding: 40px;
+}
+
+ .wrapper {
+	width: 1170px;
+	margin: 0 auto;
+}
+
+footer {
+	/*height: 200px;
+	background: url(../images/city.gif) no-repeat center center;
+	background-size: cover;*/
+
+	height:200px;
+
+	background: image-url('city.gif')no-repeat center center fixed;
+	background-size: cover; opacity:0.9;
+	}
+
+	
+	.lockup	{
+		padding: 30px;
+		/*clearfix;*/
+	}
+			
+		.content-wrap {
+			float: left;
+
+		}
+			
+			 .copyright {
+					
+					text-transform: uppercase;
+					font-size: 12px;
+					color: rgba(0,0,0,1);
+				}
+

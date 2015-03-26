@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HouseApp</title>
+  <title>Thermo Application</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,24 +9,80 @@
 <body>
 
 
-<nav class="navbar navbar-default">
+<header>
 
-<div class="container" id="user_nav">
-  <% if user_signed_in? %>
-    <p align="right">Signed in as <%= current_user.email %>.  Not you?
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></p>
-  <% else %>
-    <%= link_to 'Sign Up', new_user_registration_path %> Or <%= link_to 'Sign in', new_user_session_path %>
-  <%end%>
-  <hr>
-</div>
-</nav>
-<!-- flash message area for devise gem -->
-<% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
 
-<%= yield %>
+  <nav>
+    <a href="">About Me</a>
+    <a href="">Work</a>
+    <a href="">Clients</a>
+    <a href="">Contact</a>
+  </nav>
+
+  <h1><span id="title">Thermo Home</span></h1>
+  <p class="kicker">Designer // Developer // Creator</p>
+
+</header>
+
+
+<!--<section class="box-white container-fluid">-->
+  <!--<div class="wrapper padding-all">-->
+    <!--<div class="container">-->
+
+
+
+    <!--</div>-->
+  <!--</div>-->
+<!--</section>-->
+
+<!--<section class="box-grey container-fluid">-->
+  <!--<div class=" wrapper padding-all">-->
+    <!--<div class="container">-->
+      <!--<div class="row">-->
+
+
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</section>-->
+
+    <section id="contact" class="box-white">
+      <nav class="navbar navbar-default">
+
+        <div class="container" id="user_nav">
+          <% if user_signed_in? %>
+              <p align="center">Signed in as <%= current_user.email %>.  Not you?
+                <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></p>
+          <% else %>
+              <%= link_to 'Sign Up', new_user_registration_path %> Or <%= link_to 'Sign in', new_user_session_path %>
+          <%end%>
+          <hr>
+        </div>
+      </nav>
+      <!-- flash message area for devise gem -->
+      <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+
+      <%= yield %>
+    </section>
+
+
+
+    <footer>
+      <div class="lockup">
+        <div class="content-wrap">
+          <nav>
+            <a href="">About Me</a>
+            <a href="">Work</a>
+            <a href="">Clients</a>
+            <a href="">Contact</a>
+          </nav>
+
+          <p class="copyright">All content copyright 2014</p>
+        </div>
+      </div>
+    </footer>
 
 </body>
 </html>

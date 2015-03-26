@@ -1,25 +1,26 @@
-<h2>Thermometers index view</h2>
+<div class="thermoindex">
+    <h2><%= current_user.email %>'s Thermometers</h2>
 
-<%= link_to "create", new_user_thermometer_path, class: "btn btn-primary btn-lg", id: "create_thermo_button" %>
+    <%= link_to "create", new_user_thermometer_path, class: "btn btn-primary btn-lg", id: "create_thermo_button" %>
 
-<container>
-  <table class="table table-hover">
-    <tr>
-        <!--<th>Thermometer number id: </th>-->
-        <th>Thermometer location: </th>
-        <th>Max temperature limit: </th>
-        <th>Min temperature limit: </th>
-        <th>Current temperature: </th>
-        <th>Options: </th>
-        <!--<th>Thermometer Options: </th>-->
-        <!--<th><%= label :readingsOn, "Thermometer On" %></th>-->
-        <!--<th><%= label :readingOn, "Thermometer Off"%></th>-->
+        <container>
+          <table class="table table-hover">
+            <tr>
+                <!--<th>Thermometer number id: </th>-->
+                <th>Thermometer location: </th>
+                <th>Max temperature limit: </th>
+                <th>Min temperature limit: </th>
+                <th>Current temperature: </th>
+                <th>Options: </th>
+                <!--<th>Thermometer Options: </th>-->
+                <!--<th><%= label :readingsOn, "Thermometer On" %></th>-->
+                <!--<th><%= label :readingOn, "Thermometer Off"%></th>-->
 
-    </tr>
+            </tr>
 
-    <!--the data portion is rendered and located as a partial in /views/thermometers folder _thermometer.html.erb
-    also the @thermometers is plural so it will loop through each as a default -->
-    <%= render @thermometers %>
-  </table>
-</container>
-
+            <!--the data portion is rendered and located as a partial in /views/thermometers folder _thermometer.html.erb
+            also the @thermometers is plural so it will loop through each as a default -->
+            <%= render @thermometers %>
+          </table>
+        </container>
+</div>
