@@ -76,6 +76,10 @@ class UsersController < ApplicationController
     end
   end
 
+    def login
+      @user = User.koala(request.env['omniauth.auth']['credentials'])
+    end
+
 
   private
   # watch how you use set_user if the :id isn't required, you will run into issues.  Make sure the url

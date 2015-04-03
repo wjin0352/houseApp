@@ -11,3 +11,8 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore facebook app keys
+/facebook.yml
+/config/facebook.yml
+/development.rb

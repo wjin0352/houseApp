@@ -34,6 +34,9 @@ gem 'pry'
 gem "omniauth-github"
 gem 'omniauth-gplus', '~> 2.0'
 gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
+gem "koala", "~> 1.10.0rc"
+
 
 gem 'poltergeist', '~> 1.5.1'
 gem 'whenever', :require => false

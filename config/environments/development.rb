@@ -1,4 +1,9 @@
+
+ENV['FACEBOOK_APP_ID']= "1451077395183447"
+ENV['FACEBOOK_SECRET']= "b7148a5ec0d29c0813d992afaeae0d43"
+
 Rails.application.configure do
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

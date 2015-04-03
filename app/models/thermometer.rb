@@ -22,7 +22,7 @@ class Thermometer < ActiveRecord::Base
       p self.minTemp
       p self
       #    end
-    puts 'test'*30
+    # puts 'test'*30
     end
   end
 

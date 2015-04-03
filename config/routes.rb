@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  #  To implement a omniauth callback
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  get 'auth/facebook', as: "auth_provider"
+  get 'auth/facebook/callback', to: 'users#login'
+
   resources :userview
   resources :home
 
